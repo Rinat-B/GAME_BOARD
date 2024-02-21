@@ -7,14 +7,49 @@ import React, { useState } from 'react';
 //     options: ['London', 'Paris', 'Berlin', 'Madrid'],
 //     answer: 'Paris'
 //   }
-const questions = [];
+  
 
-const Question = ({ question, options, handleOptionSelect }) => {
+  handleAnswerSelect = (answer) => {
+      this.setState({ selectedAnswer: answer });
+  };
+
+ const questions = [{
+  question: "Which continent is the largest?",
+  options: ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"],
+  answer:"Asia" 
+},{ question:"Which country is shaped like a boot?",
+ options:["Italy","Israel","China","Switzerland"],
+ answer:"Italy"},{
+  question:"What is the strongest muscle in the body?",
+  options:["arm","jaw","Tongue","thigh"],
+  answer: "jaw"},{
+    question:"What is the largest ocean in the world? ",
+    options:["Atlantic"," Indian Ocean","the pacific ocean","Arctic Ocean"],
+    answer: "the pacific ocean"
+
+  },];
+
+ 
+
+
+
+
+ const Question = ({ question, options, handleOptionSelect }) => {
   return (
     <div>
-      <p>{
-        //Introduce the question
-        }</p>
+      <p>{question }</p>
+     
+      {question.map((options,index)=>(
+      <input key={index} type="button" onClick={handleAnswerSelect}></input>
+      )
+
+      
+
+      
+
+      )}
+ 
+       
 
         {/* Go through the list of options you received in props using map, display each option as a button
          In case of clicking, send the selected option to the appropriate function. */}
