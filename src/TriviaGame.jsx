@@ -32,11 +32,14 @@ const TriviaGame = () => {
 
   const handleOptionSelect = (option) => {
 //Put the selection into the appropriate variable
+    setSelectedOption(option.target.value);
+ 
 };
 
   const handleNextQuestion = () => {
     if (selectedOption === questions[currentQuestion].answer) {
       //Add a point to the user.
+      setScore(prv =>prv +=1);
     }
     setSelectedOption('');
     if (currentQuestion + 1 < questions.length) {
@@ -48,6 +51,8 @@ const TriviaGame = () => {
 
   const handleRestart = () => {
     //Initialize all variables.
+    setSelectedOption('');
+    setScore (0);
   };
 
   return (
@@ -64,6 +69,9 @@ const TriviaGame = () => {
           <p>Question {currentQuestion + 1} of {questions.length}</p>
           <Question
           //Pass as props the variables question, options, handleOptionSelect
+          question={currentQuestion}
+          options={currentQuestion['options']}
+          handleOptionSelect={handleOptionSelect}
           />
           <button disabled={!selectedOption} onClick={handleNextQuestion}>Next</button>
         </div>
