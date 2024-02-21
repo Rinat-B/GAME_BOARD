@@ -7,11 +7,14 @@ const generateSecretNumber = () => {
 const NumberGuessingGame = () => {
    //Create the following variables using useState:
   // secret, attempts
+  const [secret, setSecret] = useState(generateSecretNumber());
+  const [attempts, setAttempts] = useState(0);
   const [guess, setGuess] = useState('');
   const [result, setResult] = useState('');
 
   const handleGuessChange = (event) => {
     //Put the guess from the user into the corresponding variable.
+    setGuess(event.target.value);
   };
 
   const handleGuessSubmit = (event) => {
@@ -25,11 +28,29 @@ const NumberGuessingGame = () => {
        // If it doesn't fit, check if it's bigger or smaller than it.
        //Notify the user using the result variable.
        //initialize the guess variable.
-  
+    if(secret == numGuess){
+      setResult( 'The number matches')
+      return;}
+    else
+      if(secret > numGuess){
+        setResult ('The number chosen is greater' )
+        return;}      
+    else
+      if(secret < numGuess){
+        setResult('The selected number is smaller');
+        return;}
+    
+    setSecret(generateSecretNumber());
+
   };
 
   const handleRestart = () => {
     //Initialize all variables.
+  setSecret(generateSecretNumber());
+  setAttempts(0);
+  setGuess('');
+  setResult('');
+
   };
 
   return (
